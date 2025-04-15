@@ -168,13 +168,17 @@
     for (let i = 10; i <= totalPages; i += 10) {
       const checkpoint = document.createElement('div');
       checkpoint.classList.add('checkpoint');
-      const positionPercent = i / totalPages * 100;
+
+      let positionPercent = i / totalPages * 100;
+      if (i === totalPages) {
+        positionPercent = 99.5; // Shift slightly left so it's not cut off
+      }
+
       checkpoint.style.left = positionPercent + '%';
 
       const label = document.createElement('div');
       label.classList.add('checkpoint-label');
 
-      // Offset edge labels
       if (i === 10) {
         label.style.left = 'calc(' + positionPercent + '% + 12px)';
         label.style.textAlign = 'left';
